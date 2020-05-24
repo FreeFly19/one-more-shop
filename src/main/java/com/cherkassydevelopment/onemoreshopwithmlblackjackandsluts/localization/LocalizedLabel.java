@@ -14,6 +14,6 @@ public class LocalizedLabel {
     @Id
     @GeneratedValue
     private Long id;
-    private String langCode;
+    private Language lang;
     private String label;
 }

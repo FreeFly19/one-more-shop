@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="\"order\"")
 public class Order {
     @Id
     @GeneratedValue

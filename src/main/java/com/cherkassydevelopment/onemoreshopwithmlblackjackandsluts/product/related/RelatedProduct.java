@@ -1,19 +1,18 @@
-package com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.product;
+package com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.product.related;
 
-import com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.image.Image;
 import com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.localization.LocalizedLabel;
+import com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 @Setter
 @Getter
 @Entity
-public class Product {
+public class RelatedProduct {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,10 +20,9 @@ public class Product {
     @OneToMany
     private Set<LocalizedLabel> titles = new HashSet<>();
 
-    @OneToOne
-    private Image mainImage;
+    @ManyToOne
+    private Product from;
 
-    private boolean published;
-
-    private Instant createdAt;
+    @ManyToOne
+    private Product to;
 }

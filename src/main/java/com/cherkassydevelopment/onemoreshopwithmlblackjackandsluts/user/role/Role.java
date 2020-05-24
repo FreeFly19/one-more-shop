@@ -1,4 +1,4 @@
-package com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.localization;
+package com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.user.role;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,10 +10,8 @@ import javax.persistence.Id;
 @Setter
 @Getter
 @Entity
-public class LocalizedLabel {
+public class Role {
     @Id
     @GeneratedValue
     private Long id;
-    private String langCode;
-    private String label;
 }

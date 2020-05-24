@@ -1,4 +1,4 @@
-package com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.localization;
+package com.cherkassydevelopment.onemoreshopwithmlblackjackandsluts.user;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Setter
+
+/*
+A user which entered Name/Email/Phone etc, when left comment or bought a product
+ */
 @Getter
+@Setter
 @Entity
-public class LocalizedLabel {
+public class PartialUser {
     @Id
     @GeneratedValue
     private Long id;
-    private String langCode;
-    private String label;
 }

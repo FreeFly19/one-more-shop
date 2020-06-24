@@ -2,9 +2,8 @@ version: '3.7'
 
 services:
   backend:
-#    image: freefly19/kupec
-    build:
-      .
+    image: freefly19/kupec
+#    build: .
     container_name: kupec-backend
     restart: always
     ports:

@@ -730,7 +730,6 @@ ol {
 	height: 431px;
 	display: flex;
 	align-items: center;
-	padding-left: 75px;
 }
 
 .hero__text span {
@@ -2915,7 +2914,7 @@ ol {
 		margin-right: 45px;
 	}
 	.hero__search__form {
-		width: 490px;
+		width: 460px;
 	}
 	.hero__categories__all {
 		padding: 10px 25px 10px 20px;

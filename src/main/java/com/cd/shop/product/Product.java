@@ -18,6 +18,9 @@ public class Product {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = true, unique = true)
+    private Long naturalId;
+
     @OneToMany
     private Set<LocalizedLabel> titles = new HashSet<>();
 

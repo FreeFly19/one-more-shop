@@ -14,7 +14,10 @@ public class ProductOutputDto {
         this.id = product.getId();
         this.title = product.getTitles().stream()
                 .filter(t -> t.getLang().equals(requestContext.getLang()))
-                .findAny().orElseThrow().getLabel();
+                .findAny()
+                .or(() -> product.getTitles().stream().findAny().stream().findAny())
+                .orElseThrow()
+                .getLabel();
         this.mainImage = product.getMainImage();
     }
 }

@@ -16,5 +16,7 @@ public class ExcelProduct {
     private BigDecimal priceUah;
     private BigDecimal priceUsd;
     private String category1;
+    private Long category1Id;
     private String category2;
+    private Long category2Id;
 }

@@ -26,6 +26,7 @@ public class ProductCategoryService {
     public ProductCategoryOutputDto createCategory(CreateCategoryCommand createCategoryCommand, RequestContext rc) {
         ProductCategory productCategory = new ProductCategory();
         productCategory.setTitles(localizedLabelService.saveLabelsTransactional(createCategoryCommand.getLocalizedLabels()));
+        productCategory.setNaturalId(createCategoryCommand.getNaturalId());
         return new ProductCategoryOutputDto(categoryRepository.save(productCategory), rc);
     }
 }

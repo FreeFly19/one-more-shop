@@ -29,6 +29,6 @@ public class ProductController {
 
         var product = productService.findById(id, requestContext);
         model.addAttribute("product", product);
-        return "product";
+        return "shop-details";
     }
 }

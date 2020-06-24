@@ -26,6 +26,8 @@ public class DbSeed {
                 new LocalizedLabelInputDto(Language.RU, "Аккумуляторы")
         ));
 
+        createCategoryCommand.setNaturalId(4645L);
+
         RequestContext requestContext = new RequestContext();
         requestContext.setLang(Language.UA);
         requestContext.setRequestedAt(Instant.now());
@@ -33,6 +35,5 @@ public class DbSeed {
         requestContext.setUserId(null);
 
         productCategoryService.createCategory(createCategoryCommand, requestContext);
-
     }
 }

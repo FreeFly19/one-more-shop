@@ -28,4 +28,9 @@ public class IndexController {
         model.addAttribute("categories", categories);
         return "index";
     }
+
+    @GetMapping("/contact")
+    public String about() {
+        return "contact";
+    }
 }

@@ -12,4 +12,5 @@ import java.util.Set;
 public class CreateCategoryCommand {
     private Set<LocalizedLabelInputDto> localizedLabels;
     private RequestContext requestContext;
+    private Long naturalId;
 }

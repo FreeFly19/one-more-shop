@@ -31,7 +31,7 @@ public class IndexController {
         var categories = productCategoryService.getPublishedCategories(requestContext);
         model.addAttribute("categories", categories);
 
-        List<ProductOutputDto> popularProducts = productService.getMostPopular(10, requestContext);
+        List<ProductOutputDto> popularProducts = productService.getMostPopular(8, requestContext);
         model.addAttribute("popularProducts", popularProducts);
 
         return "index";

@@ -11,7 +11,7 @@
 								<span>Категории</span>
 							</div>
 							<ul>
-								<li th:each="category: ${categories}"><a href="#" th:text="${category.getTitle()}"></a></li>
+								<li th:each="category: ${@productCategoryService.getPublishedCategories()}"><a href="#" th:text="${category.getTitle()}"></a></li>
 							</ul>
 						</div>
 					</div>

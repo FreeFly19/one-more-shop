@@ -19,4 +19,6 @@ public class ExcelProduct {
     private Long category1Id;
     private String category2;
     private Long category2Id;
+    private String imageData;
+    private String imageExt;
 }

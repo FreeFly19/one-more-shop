@@ -3,6 +3,7 @@ package com.cd.shop;
 import com.cd.shop.localization.Language;
 import com.cd.shop.localization.LocalizedLabelInputDto;
 import com.cd.shop.product.category.CreateCategoryCommand;
+import com.cd.shop.product.category.ProductCategoryRepository;
 import com.cd.shop.product.category.ProductCategoryService;
 import com.cd.shop.user.RequestContext;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Component
 public class DbSeed {
     private final ProductCategoryService productCategoryService;
+    private final ProductCategoryRepository categoryRepository;
 
     @PostConstruct
     public void postInit() {
@@ -34,6 +36,8 @@ public class DbSeed {
         requestContext.setSessionId(UUID.randomUUID().toString());
         requestContext.setUserId(null);
 
-        productCategoryService.createCategory(createCategoryCommand, requestContext);
+        if (categoryRepository.count() == 0) {
+            productCategoryService.createCategory(createCategoryCommand, requestContext);
+        }
     }
 }

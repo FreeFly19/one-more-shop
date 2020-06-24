@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  backend:
+#    image: freefly19/kupec
+    build:
+      .
+    container_name: kupec-backend
+    restart: always
+    ports:
+      - "80:8080"
+    env_file:
+      - .env
+    networks:
+      - kupec-net
+
+  mysql:
+    image: mysql:8
+    container_name: kupec-mysql
+    ports:
+      - "3314:3306"
+    env_file:
+      - .env
+    volumes:
+      - ./dbdata/mysql:/var/lib/mysql
+    networks:
+      - kupec-net
+
+networks:
+  kupec-net:
+    driver: bridge

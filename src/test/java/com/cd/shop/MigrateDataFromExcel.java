@@ -1,24 +1,20 @@
 package com.cd.shop;
 
 import com.cd.shop.dataintegration.ExcelProduct;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.apache.poi.ss.usermodel.CellType.BLANK;
 
 
 class MigrateDataFromExcel {
-    private List<ExcelProduct> catalogue = new ArrayList<>();
+    private Map<Integer, ExcelProduct> catalogue = new HashMap<>();
     private String lastKnownCat1Lvl = null;
     private Long lastKnownCat1LvlId = null;
     private String lastKnownCat2Lvl = null;
@@ -62,14 +58,25 @@ class MigrateDataFromExcel {
                         if (!mainSheet.getRow(i).getCell(4).getCellType().equals(BLANK)) {
                             excelProduct.setPriceUah(new BigDecimal(mainSheet.getRow(i).getCell(4).toString()));
                         }
-                        catalogue.add(excelProduct);
+                        catalogue.put(i, excelProduct);
                         break;
                 }
             }
         }
 
-        catalogue.forEach(prod -> {
+
+        List<XSSFShape> shapes = mainSheet.getDrawingPatriarch().getShapes();
+
+        for (XSSFShape shape : shapes) {
+            XSSFPicture picShape = (XSSFPicture) shape;
+            XSSFClientAnchor a = (XSSFClientAnchor) shape.getAnchor();
+            catalogue.get(a.getRow1()).setImageData(Base64.getEncoder().encodeToString(picShape.getPictureData().getData()));
+            catalogue.get(a.getRow1()).setImageExt(picShape.getPictureData().suggestFileExtension());
+        }
+
+        catalogue.values().forEach(prod -> {
             restTemplate.postForEntity("http://localhost:8080/api/excel-products", prod, Void.class);
+//            restTemplate.postForEntity("http://letsfw.com/api/excel-products", prod, Void.class);
         });
     }
 

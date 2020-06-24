@@ -1,6 +1,7 @@
 package com.cd.shop.product;
 
 import com.cd.shop.dataintegration.ExcelProduct;
+import com.cd.shop.image.ImageService;
 import com.cd.shop.localization.LocalizedLabel;
 import com.cd.shop.localization.LocalizedLabelInputDto;
 import com.cd.shop.localization.LocalizedLabelService;
@@ -8,10 +9,13 @@ import com.cd.shop.product.category.ProductCategory;
 import com.cd.shop.product.category.ProductCategoryRepository;
 import com.cd.shop.user.RequestContext;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Set;
 
 import static com.cd.shop.localization.Language.RU;
@@ -23,6 +27,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductCategoryRepository categoryRepository;
     private final LocalizedLabelService localizedLabelService;
+    private final ImageService imageService;
 
     public ProductOutputDto findById(Long id, RequestContext requestContext) {
         return productRepository
@@ -58,6 +63,20 @@ public class ProductService {
         product.setCreatedAt(Instant.now());
         product.setPublished(true);
 
+        if (excelProduct.getImageData() != null) {
+            product.setMainImage(imageService.save(
+                    excelProduct.getImageData(),
+                    excelProduct.getImageExt(),
+                    excelProduct.getName()
+            ));
+        }
+
         productRepository.save(product);
+    }
+
+    public List<ProductOutputDto> getMostPopular(int number, RequestContext requestContext) {
+        return productRepository.findAll(PageRequest.of(0, number, Sort.by("createdAt").descending()))
+                .map(p -> new ProductOutputDto(p, requestContext))
+                .getContent();
     }
 }

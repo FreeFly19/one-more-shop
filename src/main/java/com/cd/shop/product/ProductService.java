@@ -75,7 +75,7 @@ public class ProductService {
     }
 
     public List<ProductOutputDto> getMostPopular(int number, RequestContext requestContext) {
-        return productRepository.findAll(PageRequest.of(0, number, Sort.by("createdAt").descending()))
+        return productRepository.findAll(PageRequest.of(0, number, Sort.by("createdAt").descending().and(Sort.by("mainImage.id"))))
                 .map(p -> new ProductOutputDto(p, requestContext))
                 .getContent();
     }

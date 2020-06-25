@@ -16,6 +16,7 @@ services:
   mysql:
     image: mysql:8
     container_name: kupec-mysql
+    restart: always
     ports:
       - "3314:3306"
     env_file:

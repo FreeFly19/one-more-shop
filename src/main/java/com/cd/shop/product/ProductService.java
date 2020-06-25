@@ -11,6 +11,7 @@ import com.cd.shop.user.RequestContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,7 +76,10 @@ public class ProductService {
     }
 
     public List<ProductOutputDto> getMostPopular(int number, RequestContext requestContext) {
-        return productRepository.findAll(PageRequest.of(0, number, Sort.by("createdAt").descending().and(Sort.by("mainImage.id"))))
+        return productRepository.findAll(
+                (root, query, cb) -> root.get("mainImage").isNotNull(),
+                PageRequest.of(0, number, Sort.by("createdAt").descending())
+        )
                 .map(p -> new ProductOutputDto(p, requestContext))
                 .getContent();
     }

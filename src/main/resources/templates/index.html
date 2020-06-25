@@ -50,9 +50,17 @@
                     <div class="featured__item">
                         <div class="text-center">
                             <a th:href="'/products/' + ${popularProduct.getId()}">
-                            <img th:src="${popularProduct.getMainImage().getPublicUrl()}"
+
+                            <img th:if="${popularProduct.getMainImage() != null}"
+                                 th:src="${popularProduct.getMainImage().getPublicUrl()}"
                                  th:alt="${popularProduct.getMainImage().getAlt()}"
                                  height="111px">
+
+                            <img th:if="${popularProduct.getMainImage() == null}"
+                                 src="/static/img/placeholder.png"
+                                 th:alt="${popularProduct.getTitle()}"
+                                 height="111px">
+
                             </a>
                         </div>
                         <div class="featured__item__text">

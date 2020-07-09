@@ -66,7 +66,7 @@
                         <div class="featured__item__text">
                             <h6><a th:href="'/products/' + ${popularProduct.getId()}" th:text="${popularProduct.getTitle()}"></a></h6>
 <!--                            <h5 th:text="popularProduct.getPrice()"></h5>-->
-                            <h5>Цена</h5>
+                            <h5 th:text="#{product.price}"></h5>
                         </div>
                     </div>
                 </div>

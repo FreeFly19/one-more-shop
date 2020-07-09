@@ -6,7 +6,7 @@
 			<div class="humberger__menu__overlay"></div>
 			<div class="humberger__menu__wrapper">
 				<div class="humberger__menu__logo">
-					<a href="#"><img src="../../static/img/logo.png" alt=""></a>
+					<a href="#"><img src="/img/logo.png" alt=""></a>
 				</div>
 				<div class="humberger__menu__cart">
 					<ul>
@@ -17,12 +17,12 @@
 				</div>
 				<div class="humberger__menu__widget">
 					<div class="header__top__right__language">
-						<img src="../../static/img/language.png" alt="">
-						<div>Русский</div>
+						<img src="/img/language.png" alt="">
+						<div th:text="#{lang}"></div>
 						<span class="arrow_carrot-down"></span>
 						<ul>
-							<li><a href="#">Русский</a></li>
-							<li><a href="#">Українська</a></li>
+							<li><a href="/?lang=ru">Русский</a></li>
+							<li><a href="/?lang=ua">Українська</a></li>
 						</ul>
 					</div>
 					<div class="header__top__right__auth">
@@ -81,12 +81,12 @@
 										<a href="#"><i class="fa fa-pinterest-p"></i></a>
 									</div>
 									<div class="header__top__right__language">
-										<img src="../../static/img/language.png" alt="">
-										<div>Русский</div>
+										<img src="/img/language.png" alt="">
+                                        <div th:text="#{lang}"></div>
 										<span class="arrow_carrot-down"></span>
 										<ul>
-											<li><a href="#">Русский</a></li>
-											<li><a href="#">Українська</a></li>
+											<li><a href="/?lang=ru">Русский</a></li>
+											<li><a href="/?lang=ua">Українська</a></li>
 										</ul>
 									</div>
 									<div class="header__top__right__auth">
@@ -101,7 +101,7 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<div class="header__logo">
-								<a href="../index.html"><img src="../../static/img/logo.png" alt=""></a>
+								<a href="#"><img src="/img/logo.png" alt=""></a>
 							</div>
 						</div>
 						<div class="col-lg-6">

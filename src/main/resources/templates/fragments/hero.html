@@ -8,7 +8,7 @@
 						<div class="hero__categories">
 							<div class="hero__categories__all">
 								<i class="fa fa-bars"></i>
-								<span>Категории</span>
+								<span th:text="#{product.categories}"></span>
 							</div>
 							<ul>
 								<li th:each="category: ${@productCategoryService.getPublishedCategories()}"><a href="#" th:text="${category.getTitle()}"></a></li>

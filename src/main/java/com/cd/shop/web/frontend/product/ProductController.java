@@ -20,13 +20,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{id}")
-    public String index(@PathVariable Long id, Model model) {
-        RequestContext requestContext = new RequestContext();
-        requestContext.setLang(Language.UA);
-        requestContext.setRequestedAt(Instant.now());
-        requestContext.setSessionId(UUID.randomUUID().toString());
-        requestContext.setUserId(null);
-
+    public String index(@PathVariable Long id, Model model, RequestContext requestContext) {
         var product = productService.findById(id, requestContext);
         model.addAttribute("product", product);
         return "shop-details";

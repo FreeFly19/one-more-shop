@@ -3465,3 +3465,13 @@ ol {
 		font-size: 24px;
 	}
 }
+
+.children-categories a {
+	color: #003eff;
+	text-decoration: none;
+}
+
+.children-categories a:hover {
+	color: #003eff;
+	text-decoration: underline;
+}

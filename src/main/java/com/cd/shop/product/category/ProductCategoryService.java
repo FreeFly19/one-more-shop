@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -42,5 +43,11 @@ public class ProductCategoryService {
         productCategory.setTitles(localizedLabelService.saveLabelsTransactional(createCategoryCommand.getLocalizedLabels()));
         productCategory.setNaturalId(createCategoryCommand.getNaturalId());
         return new ProductCategoryOutputDto(categoryRepository.save(productCategory), rc);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<ProductCategoryWithChildrenAndProductsOutputDto> getById(Long id, RequestContext requestContext) {
+        return categoryRepository.findById(id)
+                .map(ctg -> new ProductCategoryWithChildrenAndProductsOutputDto(ctg, requestContext));
     }
 }

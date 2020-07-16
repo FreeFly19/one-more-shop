@@ -51,6 +51,19 @@ public class ProductService {
         ctgLvl1.setTitles(ctgLvl1LocalizedLabels);
         categoryRepository.save(ctgLvl1);
 
+        var ctgLvl2 = categoryRepository.findByNaturalId(excelProduct.getCategory2Id())
+                .orElseGet(() -> {
+                    var c = new ProductCategory();
+                    c.setNaturalId(excelProduct.getCategory2Id());
+                    return c;
+                });
+
+        Set<LocalizedLabel> ctgLvl2LocalizedLabels = localizedLabelService
+                .saveLabelsTransactional(Set.of(new LocalizedLabelInputDto(RU, excelProduct.getCategory2())));
+        ctgLvl2.setTitles(ctgLvl2LocalizedLabels);
+        ctgLvl2.setParent(ctgLvl1);
+        categoryRepository.save(ctgLvl2);
+
         Product product = productRepository.findByNaturalId(excelProduct.getProductCode())
                 .orElseGet(() -> {
                     Product p = new Product();
@@ -63,6 +76,7 @@ public class ProductService {
         product.setTitles(productLocalizedLabels);
         product.setCreatedAt(Instant.now());
         product.setPublished(true);
+        product.setCategory(ctgLvl2);
 
         if (excelProduct.getImageData() != null) {
             product.setMainImage(imageService.save(

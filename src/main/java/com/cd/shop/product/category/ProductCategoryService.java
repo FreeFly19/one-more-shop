@@ -4,6 +4,7 @@ import com.cd.shop.localization.Language;
 import com.cd.shop.localization.LocalizedLabelService;
 import com.cd.shop.user.RequestContext;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,7 @@ public class ProductCategoryService {
     private final ProductCategoryRepository categoryRepository;
 
     public List<ProductCategoryOutputDto> getPublishedCategories(RequestContext requestContext) {
-        return categoryRepository.findAll()
+        return categoryRepository.findAll(Specification.where(((root, query, criteriaBuilder) -> root.get("parent").isNull())))
                 .stream()
                 .map(ctg -> new ProductCategoryOutputDto(ctg, requestContext))
                 .collect(Collectors.toList());

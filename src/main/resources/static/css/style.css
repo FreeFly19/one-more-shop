@@ -29,6 +29,14 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+:root {
+    --preloader-z-index: 999999;
+    --menu-z-index: 9999;
+    --hamburger-menu-wrap-z-index: 99;
+    --hamburger-menu-z-index: 98;
+    --header-z-index: 9;
+    --hero-z-index: 9;
+}
 
 html,
 body {
@@ -190,7 +198,7 @@ ol {
 	height: 100%;
 	top: 0;
 	left: 0;
-	z-index: 999999;
+	z-index: var(--preloader-z-index);
 	background: #000;
 }
 
@@ -373,7 +381,7 @@ ol {
 	position: absolute;
 	left: 0;
 	top: 43px;
-	z-index: 9;
+	z-index: var(--header-z-index);
 	opacity: 0;
 	visibility: hidden;
 	-webkit-transition: all, 0.3s;
@@ -432,7 +440,7 @@ ol {
 	top: 50px;
 	background: #222222;
 	width: 180px;
-	z-index: 9;
+	z-index: var(--header-z-index);
 	padding: 5px 0;
 	-webkit-transition: all, 0.3s;
 	-moz-transition: all, 0.3s;
@@ -578,7 +586,7 @@ ol {
 	left: 0;
 	top: 46px;
 	width: 100%;
-	z-index: 9;
+	z-index: var(--hero-z-index);
 	background: #ffffff;
 }
 
@@ -617,9 +625,10 @@ ol {
 
 .hero__categories ul {
 	border: 1px solid #ebebeb;
-	padding-left: 40px;
-	padding-top: 10px;
-	padding-bottom: 12px;
+    padding: 10px 50px 12px 40px;
+    position: absolute;
+    background-color: #ffffff;
+    z-index: var(--menu-z-index);
 }
 
 .hero__categories ul li {
@@ -2996,7 +3005,7 @@ ol {
 		top: 0;
 		height: 100%;
 		overflow-y: auto;
-		z-index: 99;
+		z-index: var(--hamburger-menu-wrap-z-index);
 		padding: 30px;
 		padding-top: 50px;
 		opacity: 0;
@@ -3133,7 +3142,7 @@ ol {
 		width: 100%;
 		background: rgba(0, 0, 0, 0.5);
 		content: "";
-		z-index: 98;
+		z-index: var(--hamburger-menu-z-index);
 		visibility: hidden;
 		-webkit-transition: all, 0.6s;
 		-moz-transition: all, 0.6s;
@@ -3254,7 +3263,7 @@ ol {
 		top: 0;
 		height: 100%;
 		overflow-y: auto;
-		z-index: 99;
+		z-index: var(--hamburger-menu-wrap-z-index);
 		padding: 30px;
 		padding-top: 50px;
 		opacity: 0;
@@ -3391,7 +3400,7 @@ ol {
 		width: 100%;
 		background: rgba(0, 0, 0, 0.5);
 		content: "";
-		z-index: 98;
+		z-index: var(--hamburger-menu-z-index);
 		visibility: hidden;
 		-webkit-transition: all, 0.6s;
 		-moz-transition: all, 0.6s;

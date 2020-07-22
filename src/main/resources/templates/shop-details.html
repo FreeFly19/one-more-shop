@@ -34,12 +34,8 @@
 	<!-- Header Section End -->
 
 	<!-- Hero Section Begin -->
-	<section th:insert="~{fragments/hero :: hero}"></section>
+	<section th:replace="~{fragments/hero :: hero(hideHero=true)}"></section>
 	<!-- Hero Section End -->
-
-	<!-- Breadcrumb Section Begin -->
-	<section th:insert="~{fragments/breadcrumb :: breadcrumb}"></section>
-	<!-- Breadcrumb Section End -->
 
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
